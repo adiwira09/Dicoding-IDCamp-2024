@@ -15,26 +15,18 @@ Seperti diketahui bahwa pergerakan harga saham pada umumnya sangat berfluktuatif
 - [Paper](https://scholar.google.com/) 
 
 ## Business Understanding
+PT Bank Rakyat Indonesia (Persero) Tbk (BBRI) merupakan salah satu emiten terbesar di Bursa Efek Indonesia (BEI), dan pergerakan harganya mencerminkan sentimen pasar secara luas. Namun, perubahan harga yang cepat dan tidak menentu memerlukan pendekatan khusus agar prediksi dapat dilakukan secara efektif.
 
-Pada bagian ini, kamu perlu menjelaskan proses klarifikasi masalah.
-
-Bagian laporan ini mencakup:
+Salah satu pendekatan yang digunakan untuk memahami pola data time series seperti harga saham adalah melalui metode machine learning, khususnya model berbasis Recurrent Neural Network (RNN) seperti Long Short-Term Memory (LSTM). Model ini memiliki kemampuan mengingat informasi jangka panjang, yang membuatnya cocok untuk memproses dan menganalisis data historis saham.
 
 ### Problem Statements
-
-Menjelaskan pernyataan masalah latar belakang:
-- Pernyataan Masalah 1
-- Pernyataan Masalah 2
-- Pernyataan Masalah n
+- Algoritma apa yang paling sesuai digunakan untuk data time series dalam konteks pasar saham Indonesia?
+- Bagaimana evaluasi performa model agar dapat diandalkan dalam pengambilan keputusan investasi?
 
 ### Goals
-
-Menjelaskan tujuan dari pernyataan masalah:
-- Jawaban pernyataan masalah 1
-- Jawaban pernyataan masalah 2
-- Jawaban pernyataan masalah n
-
-Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
+- Mengembangkan sistem prediksi harga saham BBRI dengan menggunakan pendekatan machine learning berbasis time series.
+- Mengeksplorasi dan membandingkan performa satu atau lebih model dalam memprediksi harga saham.
+- Menentukan metrik evaluasi yang tepat untuk mengukur akurasi prediksi, serta melakukan analisis terhadap performa model.
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
