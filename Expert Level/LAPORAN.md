@@ -2,13 +2,17 @@
 
 ## Domain Proyek
 
-Pada bagian ini, kamu perlu menuliskan latar belakang yang relevan dengan proyek yang diangkat.
+Dalam dunia investasi saham, kemampuan untuk memprediksi harga saham secara akurat menjadi hal yang sangat penting, baik bagi investor individu maupun institusi keuangan. Prediksi harga saham yang tepat dapat membantu pengambilan keputusan investasi, mengurangi risiko kerugian, dan meningkatkan potensi keuntungan.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Jelaskan mengapa dan bagaimana masalah tersebut harus diselesaikan
-- Menyertakan hasil riset terkait atau referensi. Referensi yang diberikan harus berasal dari sumber yang kredibel dan author yang jelas.
+PT Bank Rakyat Indonesia (Persero) Tbk atau BBRI merupakan salah satu perusahaan BUMN terbesar di Indonesia yang sahamnya memiliki kapitalisasi pasar tinggi dan likuiditas yang sangat baik. Saham BBRI juga termasuk dalam indeks LQ45 dan IDX30, menjadikannya salah satu saham yang paling aktif diperdagangkan dan banyak diminati oleh investor.
+
+**Mengapa masalah ini harus diselesaikan? Dan bagaimana menyelesaikannya?**
+
+Seperti diketahui bahwa pergerakan harga saham pada umumnya sangat berfluktuatif, hal itu sejalan dengan risk yang diterima oleh Investor. Masalah ini dapat diselesaikan dengan pendekatan machine learning yang mampu mempelajari pola dari data historis. Dengan model yang tepat, prediksi harga saham bisa menjadi lebih akurat dan membantu investor dalam mengambil keputusan yang lebih rasional.
   
-  Format Referensi: [Judul Referensi](https://scholar.google.com/) 
+**Referensi:**
+- Dataset didapat dari hasil scraping website Yahoo Finannce [BBRI.JK](https://finance.yahoo.com/quote/BBRI.JK/)
+- [Paper](https://scholar.google.com/) 
 
 ## Business Understanding
 
