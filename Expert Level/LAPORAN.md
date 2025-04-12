@@ -96,11 +96,42 @@ Ada beberapa bulan dengan harga yang lebih tinggi, dan ada beberapa bulan yang h
 Grafik menunjukkan fluktuasi harian yang cukup besar, dengan banyak lonjakan tajam baik ke atas maupun ke bawah. Beberapa puncak tajam menunjukkan periode dengan perubahan harga yang sangat besar dalam waktu singkat. Ini mengindikasikan bahwa harga saham BBRI mengalami volatilitas yang cukup tinggi di banyak titik waktu.
 
 ## Data Preparation
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
+Ada beberapa handling pada data sebelum melakukan pemodelan, diantaranya adalah sebagai berikut:
+1. **Pengecekan NaN Value**
+   
+![image](https://github.com/user-attachments/assets/15d723fe-1e23-4f34-b8d6-3d01880b6ce9)
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+Hasil pemeriksaan menunjukkan adanya sejumlah baris dengan nilai kosong. Nilai kosong tersebut muncul karena adanya pencatatan aktivitas korporat seperti pembagian dividen yang tidak disertai data harga. Oleh karena itu, baris-baris tersebut dihapus karena dianggap tidak merepresentasikan pergerakan harga saham.
+
+2. **Pengecekan Duplikat**
+
+Hasilnya menunjukkan bahwa tidak ada baris data yang terduplikasi sehingga tidak diperlukan tindakan lanjutan pada tahap ini.
+
+3. **Mengubah Tipe Data**
+
+![image](https://github.com/user-attachments/assets/ebf0ee33-1ea7-4411-955b-29b1afca9294)
+
+Semua kolom memiliki tipe data yang belum sesuai, masih berbentuk string/object. Oleh karena itu, semua kolom harus diubah agar sesuai dengan format yang dibutuhkan, khususnya untuk analisis berbasis waktu.
+
+![image](https://github.com/user-attachments/assets/da8989f2-d572-4554-9873-7f01a9b2cf56)
+
+Tipe data untuk tiap kolom sudah sesuai untuk dilanjutkan ke tahap berikutnya.
+
+4. **Date sebagai Index**
+
+Untuk mempermudah pemrosesan data time series, kolom tanggal (Date) dijadikan sebagai index. Hal ini dilakukan agar setiap data harga saham dapat diakses dan dianalisis berdasarkan waktu secara kronologis.
+
+5. **Normalisasi Data**
+
+Arsitekur LSTM sangat sensitif terhadap skala data. Oleh karena itu, dilakukan normalisasi menggunakan MinMaxScaler untuk mengubah skala nilai ke dalam rentang [0, 1]. Tujuannya adalah agar proses pembelajaran pada model LSTM menjadi lebih stabil dan cepat konvergen.
+
+6. **Penentuan Time Step**
+
+Dalam konteks time series forecasting, digunakan pendekatan sliding window dengan time step sebanyak 5, yang berarti model akan menggunakan lima data sebelumnya untuk memprediksi harga pada waktu berikutnya. Pemilihan time step ini merupakan salah satu hyperparameter penting dalam modeling time series.
+
+7. **Spit Dataset**
+
+Data kemudian dibagi menjadi dua bagian, yaitu training set (80%) dan testing set (20%). Dataset yang telah terbentuk kemudian di-reshape menjadi format tiga dimensi [samples, time steps, features], yaitu format yang dibutuhkan oleh model LSTM dalam proses pelatihan.
 
 ## Modeling
 Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
