@@ -38,10 +38,9 @@ Pergerakan harga saham merupakan data time series yang sangat dipengaruhi oleh p
    - Melakukan eksplorasi terhadap nilai-nilai optimal dari beberapa hyperparameter penting, antara lain:
      - Epoch
      - Timestep
-     - Jumlah neuron di hidden layer
-     - Batch size
-     - Learning rate
-   - Proses tuning dilakukan secara iteratif atau dengan teknik pencarian seperti Grid Search atau Random Search.
+     - Jumlah units neuron
+     - Jumlah nilai dropout
+   - Proses tuning dilakukan secara iteratif atau dengan teknik pencarian seperti Random Search.
 
 4. Evaluasi dan Visualisasi
    - Menggunakan RMSE, MAE, dan R² Score sebagai metrik evaluasi model.
@@ -134,28 +133,76 @@ Dalam konteks time series forecasting, digunakan pendekatan sliding window denga
 Data kemudian dibagi menjadi dua bagian, yaitu training set (80%) dan testing set (20%). Dataset yang telah terbentuk kemudian di-reshape menjadi format tiga dimensi [samples, time steps, features], yaitu format yang dibutuhkan oleh model LSTM dalam proses pelatihan.
 
 ## Modeling
-Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
+Setelah melakukan analisis dan data prepration, selanjutnya dilakukan proses modeling. pemodelan dilakukan dengan menggunakan algoritma Long Short-Term Memory (LSTM), yang dikenal efektif dalam mengolah data sekuensial seperti data time series saham.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
-- Jika menggunakan satu algoritma pada solution statement, lakukan proses improvement terhadap model dengan hyperparameter tuning. **Jelaskan proses improvement yang dilakukan**.
-- Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. **Jelaskan mengapa memilih model tersebut sebagai model terbaik**.
+![image](https://github.com/user-attachments/assets/bcadf48e-f9fa-429e-b6f7-5217137bbdcc)
+
+Setelah dilakukan EDA (Exploratory Data Analysis) terlihat bahwa pergerakan harga saham BBRI memiliki rentang yang cukup fluktuatif, sehingga arsitektur memiliki kemampuan yang optimal untuk digunakan dikarenakan LSTM dapat memahami pola untuk jangka panjang dan kemampuan untuk mengatasan pergerakan harga yang kompleks.
+
+1. **Arsitektur dan Pengembangan Model**
+
+Model awal dibangun menggunakan pendekatan stacked LSTM, yang terdiri dari dua lapisan LSTM berurutan. Setiap lapisan diikuti oleh layer Dropout untuk mencegah overfitting. Arsitektur ini disusun sebagai berikut:
+  - **Lapisan pertama**: LSTM dengan return_sequences=True untuk mengizinkan data mengalir ke layer LSTM berikutnya.
+  - **Lapisan kedua**: LSTM dengan return_sequences=False karena ini adalah lapisan terakhir yang memproses urutan.
+  - **Lapisan output**: Dense dengan satu neuron sebagai output regresi.
+Fungsi aktivasi default digunakan (tanh untuk LSTM dan linear untuk output). Optimizer yang digunakan adalah Adam, karena umumnya stabil dan cepat konvergen dalam training LSTM.
+
+2. **Hyperparameter Tuning dengan Keras Tuner**
+
+Untuk meningkatkan performa model, dilakukan tuning hyperparameter otomatis menggunakan modul RandomSearch dari Keras Tuner. Parameter-parameter yang diuji meliputi:
+  - Jumlah neuron pada masing-masing lapisan LSTM (units, units_2)
+  - Tingkat dropout untuk masing-masing lapisan (dropout, dropout_2)
+  - Jumlah epoch dan batch size tetap konstan selama tuning
+Proses tuning dieksekusi sebanyak lima kali percobaan (trials) dengan satu eksekusi per trial, untuk mendapatkan kombinasi hyperparameter terbaik berdasarkan nilai val_loss terendah.
+```
+tuner = RandomSearch(build_model,
+                     objective='val_loss',
+                     max_trials=5,
+                     executions_per_trial=1,
+                     directory='my_dir',
+                     project_name='lstm_tuning')
+```
+3. **Best Parameter**
+
+Setelah proses tuning selesai, model terbaik dibangun kembali dengan konfigurasi yang memberikan performa validasi terbaik. Adapun konfigurasi tersebut adalah:
+  - Lapisan LSTM pertama: 150 unit neuron, return_sequences=True, dropout 0.4
+  - Lapisan LSTM kedua: 200 unit neuron, dropout 0.3
+  - Output layer: Dense (1 unit)
+  - Optimizer: Adam
+  - Loss function: Mean Squared Error (MSE)
+  - Epoch: 20
+  - Batch size: 32
+Model ini kemudian dilatih kembali pada data pelatihan dan divalidasi menggunakan data testing. Proses pelatihan menggunakan 20 epoch dan menunjukkan stabilitas serta penurunan loss yang signifikan pada data validasi
 
 ## Evaluation
-Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
+Untuk mengevaluasi performa model LSTM dalam memprediksi harga saham BBRI, digunakan beberapa metrik regresi berikut:
+- Root Mean Squared Error (RMSE)
+RMSE digunakan untuk mengukur jarak antara nilai prediksi dengan nilai aktual dalam satuan aslinya (harga saham). RMSE memberikan penalti yang lebih besar terhadap kesalahan prediksi yang besar.
 
-Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik **akurasi, precision, recall, dan F1 score**. Jelaskan mengenai beberapa hal berikut:
-- Penjelasan mengenai metrik yang digunakan
-- Menjelaskan hasil proyek berdasarkan metrik evaluasi
+$$
+RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
+$$
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
+- Mean Absolute Percentage Error (MAPE)
+MAPE digunakan untuk mengukur kesalahan prediksi dalam bentuk persentase, yang sangat berguna untuk interpretasi karena tidak bergantung pada satuan. Semakin kecil nilai MAPE, semakin akurat prediksi model.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+$$
+MAPE = \frac{100\%}{n} \sum_{i=1}^{n} \left| \frac{y_i - \hat{y}_i}{y_i} \right|
+$$
 
-**---Ini adalah bagian akhir laporan---**
+- R² Score (Koefisien Determinasi)
+R² menunjukkan proporsi variasi nilai aktual yang dapat dijelaskan oleh model. Nilai R² mendekati 1 menandakan model yang sangat baik.
 
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
+$$
+R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}
+$$
 
+Parameter terbaik yang diperoleh dari proses tuning kemudian diuji pada data testing.
+
+### 📊 Hasil Evaluasi Model LSTM
+- RMSE: 104.48144718920904
+- MAPE: 1.6403591247308735%
+- R² Score: 0.7595615661462917
+
+### 🖼️ Evaluasi Visual: Loss Function
+![image](https://github.com/user-attachments/assets/1f15541b-31b3-4807-a7cd-44f7da62a924)
