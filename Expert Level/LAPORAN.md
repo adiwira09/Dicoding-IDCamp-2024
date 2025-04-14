@@ -47,7 +47,7 @@ Pergerakan harga saham merupakan data time series yang sangat dipengaruhi oleh p
    - Membandingkan grafik hasil prediksi dengan data aktual untuk menilai kualitas prediksi secara visual.
 
 ## Data Understanding
-Dataset yang digunakan merupakan data historis dari saham BBRI selama 3 tahun (1 Januari 2022 - 31 Desember 2024). Baris data yang berhasil didapatkan sebanyak 728 baris. 
+Dataset yang digunakan merupakan data historis dari saham BBRI selama 3 tahun (1 Januari 2022 - 31 Desember 2024). Baris data yang berhasil didapatkan sebanyak 728 baris dan 6 kolom. 
 
 Pengambilan data dilakukan dengan cara scraping pada platform [Yahoo Finance](https://finance.yahoo.com/quote/BBRI.JK/).
 
