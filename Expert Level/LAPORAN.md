@@ -21,7 +21,7 @@ Pergerakan harga saham merupakan data time series yang sangat dipengaruhi oleh p
 
 ### Problem Statements
 - Bagaimana membangun model LSTM yang optimal untuk memprediksi harga saham BBRI berdasarkan data historis?
-- Parameter apa saja yang paling mempengaruhi kinerja model LSTM dalam konteks data time series saham?
+- Bagaimana konfigurasi parameter yang optimal dalam membangun model LSTM untuk forecasting harga saham BBRI berdasarkan data historis?
 
 ### Goals
 - Membangun model prediksi harga saham BBRI menggunakan algoritma LSTM.
