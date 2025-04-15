@@ -44,16 +44,32 @@ from pandas.plotting import autocorrelation_plot, lag_plot
 """# Load data"""
 
 df = pd.read_csv('finance.csv')
+df.head()
 
-df
+"""# Data Understanding"""
 
-"""# Data Understanding & Data Preparation"""
+baris, kolom = df.shape
+print(f'Jumlah baris: {baris}')
+print(f'Jumlah kolom: {kolom}')
 
 df.info()
 
+"""Semua tipe data kolom pada dataset belum sesuai, masih berupa object/string."""
+
 df.isnull().sum()
 
-df.duplicated().sum()
+"""Dataset memiliki null value pada kolom Low, Close, dan Volume sebanyak 6 baris"""
+
+print(f'Jumlah data duplikat: {df.duplicated().sum()}')
+
+"""Dataset tidak memiliki duplikat data.
+
+# Data Preparation
+
+Berdasarkan data understanding, beberapa hal yang perlu di handling :
+1. Handling tipe data pada semua kolom
+2. Handling NaN value
+"""
 
 # Mengonversi kolom 'Date' menjadi datetime
 df['Date'] = pd.to_datetime(df['Date'], format='%b %d, %Y')
@@ -65,29 +81,35 @@ df['Low'] = df['Low'].replace({',': ''}, regex=True).astype(float)
 df['Close'] = df['Close'].replace({',': ''}, regex=True).astype(float)
 df['Volume'] = df['Volume'].replace({',': ''}, regex=True).astype(float)
 
-"""Ada data null
+"""## Handling NaN value"""
 
-Data null tersebut merupakan besaran dividen, bukan harga saham. Oleh karena itu bisa kita hapus row tersebut
+df.head()
+
+# Melihat data NaN
+df[df.isna().any(axis=1)]
+
+"""Terlihat bahwa value hanya terisi pada kolom Open. Jika kita lihat pada kolom lainnya, value dari Open pun tidak berada di rentang **puluhan/ratusan**.
+
+Setelah meihat kembali pada data, NaN value tersebut adalah **besaran nilai dividen yang dibagikan oleh perusahaan kepada investor** pada hari itu.
+
+Oleh karena itu baris tersebut di drop/hapus.
 """
 
-df = df.dropna()
+df_clean = df.dropna()
 
-# cek data duplikat
-df.duplicated().sum()
+df_clean.isnull().sum()
 
-"""tidak ada duplikat data"""
+"""## Analysis 2
 
-df.info()
+### Closing Price Trend
+"""
 
-df.set_index('Date', inplace=True)
-
-df.describe()
-
-"""# Closing Price Trend"""
+# Set kolom Date sebagai index
+df_clean.set_index('Date', inplace=True)
 
 # 1. Plot harga penutupan
 plt.figure(figsize=(12,4))
-plt.plot(df.index, df['Close'])
+plt.plot(df_clean['Close'])
 plt.title('BBRI Close Price')
 plt.xlabel('Date')
 plt.ylabel('Price')
@@ -100,12 +122,12 @@ Harga saham BBRI mengalami kenaikan yang tajam di beberapa titik, namun diikuti 
 """
 
 # Menghitung moving average 30 hari (bisa disesuaikan)
-df['MA30'] = df['Close'].rolling(window=30).mean()
+df_clean['MA30'] = df_clean['Close'].rolling(window=30).mean()
 
 # Visualisasi harga saham dengan moving average
 plt.figure(figsize=(12, 4))
-plt.plot(df.index, df['Close'], label='Harga Saham BBRI', alpha=0.7)
-plt.plot(df.index, df['MA30'], label='30 Hari Moving Average', color='red', linestyle='-')
+plt.plot(df_clean['Close'], label='Harga Saham BBRI', alpha=0.7)
+plt.plot(df_clean['MA30'], label='30 Hari Moving Average', color='red', linestyle='-')
 plt.title('Harga Saham BBRI dengan Moving Average (30 Hari)')
 plt.xlabel('Tanggal')
 plt.ylabel('Harga Saham (IDR)')
@@ -113,10 +135,13 @@ plt.grid(True)
 plt.legend()
 plt.show()
 
-"""Moving average 30 hari memberikan gambaran bahwa harga saham BBRI cenderung naik dengan lonjakan-lonjakan signifikan, meskipun ada periode penurunan yang cukup tajam. Moving average ini membantu menghaluskan fluktuasi harian dan memperlihatkan tren jangka panjang yang lebih stabil."""
+"""Moving average 30 hari memberikan gambaran bahwa harga saham BBRI cenderung naik dengan lonjakan-lonjakan signifikan, meskipun ada periode penurunan yang cukup tajam. Moving average ini membantu menghaluskan fluktuasi harian dan memperlihatkan tren jangka panjang yang lebih stabil.
+
+### Rata-rata closing price per bulan
+"""
 
 # Mengelompokkan data berdasarkan bulan dan menghitung rata-rata harga saham per bulan
-monthly_data = df.resample('M').mean()
+monthly_data = df_clean.resample('M').mean()
 
 # Visualisasi harga saham rata-rata per bulan
 plt.figure(figsize=(12, 4))
@@ -128,9 +153,12 @@ plt.grid(True)
 plt.legend()
 plt.show()
 
-"""Ada beberapa bulan dengan harga yang lebih tinggi, dan ada beberapa bulan yang harga sahamnya lebih rendah. Hal ini bisa menunjukkan adanya pola musiman atau faktor-faktor eksternal yang mempengaruhi harga saham pada waktu-waktu tertentu."""
+"""Ada beberapa bulan dengan harga yang lebih tinggi, dan ada beberapa bulan yang harga sahamnya lebih rendah. Hal ini bisa menunjukkan adanya pola musiman atau faktor-faktor eksternal yang mempengaruhi harga saham pada waktu-waktu tertentu.
 
-df_yearly = df[['Close']].copy()
+### Closing price trend by Year
+"""
+
+df_yearly = df_clean[['Close']].copy()
 df_yearly['Year'] = df_yearly.index.year
 
 # Membuat plot untuk setiap tahun
@@ -152,12 +180,12 @@ plt.show()
 
 Tahun 2024 agar berbeda dikarenakan adanya keresahan investor mengenai isu politik dengan pemilihan presiden baru.
 
-# Distribusi Closing Price
+### Distribusi Closing Price
 """
 
 # Visualisasi distribusi harga saham BBRI dengan histogram
 plt.figure(figsize=(10, 5))
-sns.histplot(df['Close'], bins=50, kde=True)  # KDE (Kernel Density Estimation) untuk memperlihatkan distribusi
+sns.histplot(df_clean['Close'], bins=50, kde=True)  # KDE (Kernel Density Estimation) untuk memperlihatkan distribusi
 plt.title('Distribusi Harga Saham BBRI')
 plt.xlabel('Harga Saham (IDR)')
 plt.ylabel('Frekuensi')
@@ -166,7 +194,7 @@ plt.show()
 
 # Visualisasi distribusi harga saham BBRI dengan box plot
 plt.figure(figsize=(10, 6))
-sns.boxplot(x=df['Close'])
+sns.boxplot(x=df_clean['Close'])
 plt.title('Box Plot Harga Saham BBRI')
 plt.xlabel('Harga Saham (IDR)')
 plt.grid(True)
@@ -175,8 +203,8 @@ plt.show()
 from scipy.stats import skew, kurtosis
 
 # Menghitung skewness dan kurtosis dari harga saham
-skewness = skew(df['Close'])
-kurt = kurtosis(df['Close'])
+skewness = skew(df_clean['Close'])
+kurt = kurtosis(df_clean['Close'])
 
 print(f"Skewness: {skewness}")
 print(f"Kurtosis: {kurt}")
@@ -184,14 +212,14 @@ print(f"Kurtosis: {kurt}")
 """- **Distribusi Tidak Normal**
 - **Skewness Positif**
 
-
+### Return harian
 """
 
 # Visualisasi return harian
-df['Daily Return'] = df['Close'].pct_change() * 100
+df_clean['Daily Return'] = df_clean['Close'].pct_change() * 100
 
 plt.figure(figsize=(14, 4))
-plt.plot(df.index, df['Daily Return'], label='Return Harian (%)')
+plt.plot(df_clean['Daily Return'], label='Return Harian (%)')
 plt.title('Return Harian Harga Saham BBRI')
 plt.xlabel('Tanggal')
 plt.ylabel('Return Harian (%)')
@@ -201,20 +229,25 @@ plt.show()
 
 """Grafik menunjukkan fluktuasi harian yang cukup besar, dengan banyak lonjakan tajam baik ke atas maupun ke bawah. Beberapa puncak tajam menunjukkan periode dengan perubahan harga yang sangat besar dalam waktu singkat. Ini mengindikasikan bahwa harga saham BBRI mengalami volatilitas yang cukup tinggi di banyak titik waktu."""
 
-volatilitas = df['Daily Return'].std()
+volatilitas = df_clean['Daily Return'].std()
 print(f"Volatilitas harian (standar deviasi): {volatilitas}")
 
-"""**1.615%** menunjukkan bahwa perubahan harga saham BBRI per hari cenderung cukup besar dalam konteks volatilitas. Ini berarti harga saham BBRI dapat bergerak naik atau turun lebih dari 1.6% dalam satu hari secara rata-rata."""
+"""**1.615%** menunjukkan bahwa perubahan harga saham BBRI per hari cenderung cukup besar dalam konteks volatilitas. Ini berarti harga saham BBRI dapat bergerak naik atau turun lebih dari 1.6% dalam satu hari secara rata-rata.
+
+## Normalisasi
+"""
 
 # Menggunakan MinMaxScaler untuk normalisasi data harga saham
 scaler = MinMaxScaler(feature_range=(0, 1))
-scaled_data = scaler.fit_transform(df[['Close']])
+scaled_data = scaler.fit_transform(df_clean[['Close']])
+
+"""## Time-step & Split dataset"""
 
 # Menentukan jumlah time steps (lag)
 time_step = 5
 
 # Membagi data menjadi training dan testing set
-train_size = int(len(df) * 0.8)
+train_size = int(len(df_clean) * 0.8)
 train_data = scaled_data[:train_size]
 test_data = scaled_data[train_size:]
 
