@@ -49,6 +49,8 @@ Pergerakan harga saham merupakan data time series yang sangat dipengaruhi oleh p
 ## Data Understanding
 Dataset yang digunakan merupakan data historis dari saham BBRI selama 3 tahun (1 Januari 2022 - 31 Desember 2024). Baris data yang berhasil didapatkan sebanyak 728 baris dan 6 kolom. 
 
+![image](https://github.com/user-attachments/assets/b3c9ef66-663b-4e5d-a3c3-bfcc9a0d302d)
+
 Pengambilan data dilakukan dengan cara scraping pada platform [Yahoo Finance](https://finance.yahoo.com/quote/BBRI.JK/).
 
 ### Variabel yang digunakan pada forecasting harga saham BBRI adalah:
@@ -66,6 +68,27 @@ Pengambilan data dilakukan dengan cara scraping pada platform [Yahoo Finance](ht
 | 2024-12-24 | 4220.0 | 4250.0 | 4170.0 | 4200.0 | 199536100.0 |
 | 2024-12-23 | 4130.0 | 4210.0 | 4110.0 | 4210.0 | 167689800.0 |
 | 2024-12-20 | 4070.0 | 4120.0 | 4050.0 | 4060.0 | 252689600.0 |
+
+### Dataset information
+![image](https://github.com/user-attachments/assets/315b58d3-5013-4161-9e5d-db5925e88bca)
+
+Tipe data pada semua kolom masih berupa object/string.
+
+### NaN value
+
+![Jumlah NaN](https://github.com/user-attachments/assets/15d723fe-1e23-4f34-b8d6-3d01880b6ce9) | ![Distribusi](https://github.com/user-attachments/assets/93b858e7-09d7-4cfd-97e3-4089aea3d142) | ![Boxplot](https://github.com/user-attachments/assets/ada30185-352a-4fd6-b1b8-f7c0707ed63b) |
+|:--:|:--:|:--:|
+
+- Gambar pertama menunjukkan dataset memiliki null value pada kolom Low, Close, dan Volume sebanyak 6 baris. 
+- Terlihat bahwa value hanya terisi pada kolom Open. Jika kita lihat pada kolom lainnya, value dari Open pun tidak berada di rentang puluhan/ratusan.
+
+**Setelah melihat kembali pada data di website Yahoo Finance kembali, NaN value tersebut adalah besaran nilai dividen yang dibagikan oleh perusahaan kepada investor pada hari itu.**
+
+### Data duplikat
+
+![image](https://github.com/user-attachments/assets/717d6297-9f19-4824-8b50-f23d02fb21a8)
+
+Dataset tidak memiliki data yang duplikat.
 
 ### Tren (3 years)
 ![image](https://github.com/user-attachments/assets/03cb0907-172e-4e39-8ce3-aee3d61566b6)
@@ -95,40 +118,38 @@ Ada beberapa bulan dengan harga yang lebih tinggi, dan ada beberapa bulan yang h
 Grafik menunjukkan fluktuasi harian yang cukup besar, dengan banyak lonjakan tajam baik ke atas maupun ke bawah. Beberapa puncak tajam menunjukkan periode dengan perubahan harga yang sangat besar dalam waktu singkat. Ini mengindikasikan bahwa harga saham BBRI mengalami volatilitas yang cukup tinggi di banyak titik waktu.
 
 ## Data Preparation
-Ada beberapa handling pada data sebelum melakukan pemodelan, diantaranya adalah sebagai berikut:
-1. **Pengecekan NaN Value**
-   
-![image](https://github.com/user-attachments/assets/15d723fe-1e23-4f34-b8d6-3d01880b6ce9)
+Setelah dilakukan data understanding, ada beberapa hal yang perlu dilakukan sebelum membangun model forecasting. Diantaranya :
 
-Hasil pemeriksaan menunjukkan adanya sejumlah baris dengan nilai kosong. Nilai kosong tersebut muncul karena adanya pencatatan aktivitas korporat seperti pembagian dividen yang tidak disertai data harga. Oleh karena itu, baris-baris tersebut dihapus karena dianggap tidak merepresentasikan pergerakan harga saham.
-
-2. **Pengecekan Duplikat**
-
-Hasilnya menunjukkan bahwa tidak ada baris data yang terduplikasi sehingga tidak diperlukan tindakan lanjutan pada tahap ini.
-
-3. **Mengubah Tipe Data**
-
-![image](https://github.com/user-attachments/assets/ebf0ee33-1ea7-4411-955b-29b1afca9294)
-
-Semua kolom memiliki tipe data yang belum sesuai, masih berbentuk string/object. Oleh karena itu, semua kolom harus diubah agar sesuai dengan format yang dibutuhkan, khususnya untuk analisis berbasis waktu.
+1. **Mengubah Tipe Data**
 
 ![image](https://github.com/user-attachments/assets/da8989f2-d572-4554-9873-7f01a9b2cf56)
 
-Tipe data untuk tiap kolom sudah sesuai untuk dilanjutkan ke tahap berikutnya.
+Dilakukan convert tipe data dari yang semua nya object/string ke tipe data yang sesuai
+- Date -> **datetime**
+- Open -> **float**
+- High -> **float**
+- Close -> **float**
+- Volume -> **float**
 
-4. **Date sebagai Index**
+2. **Drop/delete NaN value**
+
+Dikarenakan NaN value disebabkan oleh pengisian besaran dividen yang diberikan perusahaan oleh investor, baris tersebut dilakukan drop/delete.
+
+![image](https://github.com/user-attachments/assets/c54f76cc-c64a-4748-9083-8b6d72fe7ed3)
+
+3. **Date sebagai Index**
 
 Untuk mempermudah pemrosesan data time series, kolom tanggal (Date) dijadikan sebagai index. Hal ini dilakukan agar setiap data harga saham dapat diakses dan dianalisis berdasarkan waktu secara kronologis.
 
-5. **Normalisasi Data**
+4. **Normalisasi Data**
 
 Arsitekur LSTM sangat sensitif terhadap skala data. Oleh karena itu, dilakukan normalisasi menggunakan MinMaxScaler untuk mengubah skala nilai ke dalam rentang [0, 1]. Tujuannya adalah agar proses pembelajaran pada model LSTM menjadi lebih stabil dan cepat konvergen.
 
-6. **Penentuan Time Step**
+5. **Penentuan Time Step**
 
 Dalam konteks time series forecasting, digunakan pendekatan sliding window dengan time step sebanyak 5, yang berarti model akan menggunakan lima data sebelumnya untuk memprediksi harga pada waktu berikutnya. Pemilihan time step ini merupakan salah satu hyperparameter penting dalam modeling time series.
 
-7. **Spit Dataset**
+6. **Spit Dataset**
 
 Data kemudian dibagi menjadi dua bagian, yaitu training set (80%) dan testing set (20%). Dataset yang telah terbentuk kemudian di-reshape menjadi format tiga dimensi [samples, time steps, features], yaitu format yang dibutuhkan oleh model LSTM dalam proses pelatihan.
 
