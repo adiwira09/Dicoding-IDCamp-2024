@@ -220,10 +220,13 @@ $$
 
 Parameter terbaik yang diperoleh dari proses tuning kemudian diuji pada data testing.
 
-### 📊 Hasil Evaluasi Model LSTM
+### Evaluasi Model Forecasting Data Test
+![image](https://github.com/user-attachments/assets/a201f8f1-6e73-4861-83da-5bda51456a85)
+
+### Skor Evaluasi Metrik Model LSTM
 - RMSE: 104.48144718920904
 - MAPE: 1.6403591247308735%
 - R² Score: 0.7595615661462917
 
-### 🖼️ Evaluasi Visual: Loss Function
+### Evaluasi Visual: Loss Function
 ![image](https://github.com/user-attachments/assets/1f15541b-31b3-4807-a7cd-44f7da62a924)
