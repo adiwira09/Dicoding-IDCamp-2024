@@ -12,7 +12,7 @@ Seperti diketahui bahwa pergerakan harga saham pada umumnya sangat berfluktuatif
   
 **Referensi:**
 - Dataset didapat dari hasil scraping website Yahoo Finannce [BBRI.JK](https://finance.yahoo.com/quote/BBRI.JK/)
-- [Paper](https://scholar.google.com/) 
+- [Paper](https://www.researchgate.net/publication/363040938_Prediksi_Data_Time_Series_Saham_Bank_BRI_Dengan_Mesin_Belajar_LSTM_Long_ShortTerm_Memory/) 
 
 ## Business Understanding
 Pasar saham merupakan salah satu instrumen investasi dengan volatilitas yang tinggi, sehingga memerlukan pendekatan analitik yang kuat untuk memahami dan memprediksi pergerakannya. Salah satu saham yang sangat aktif diperdagangkan di Bursa Efek Indonesia adalah saham PT Bank Rakyat Indonesia (Persero) Tbk (BBRI). Karena pergerakan harganya yang fluktuatif dan menarik bagi investor, saham ini menjadi objek yang relevan untuk diteliti lebih lanjut dalam konteks prediksi harga.
