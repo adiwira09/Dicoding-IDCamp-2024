@@ -221,14 +221,14 @@ $$
 Parameter terbaik yang diperoleh dari proses tuning kemudian diuji pada data testing.
 
 ### ⚙️ Hasil Tuning dan Konfigurasi Optimal
-  **- Timestep**: 5
-  **- Units_1**: 150
-  **- Units_2**: 200
-  **- Dropout_1**: 0.4
-  **- Dropout_2**: 0.3
-  **- Optimizer**: Adam
-  **- Epoch**: 20
-  **- Batch size**: 32
+- Timestep: 5
+- Units_1: 150
+- Units_2: 200
+- Dropout_1: 0.4
+- Dropout_2: 0.3  
+- Optimizer: Adam
+- Epoch: 20
+- Batch size: 32
 
 Konfigurasi ini memberikan hasil terbaik dalam hal keseimbangan antara akurasi dan stabilitas model.
 
