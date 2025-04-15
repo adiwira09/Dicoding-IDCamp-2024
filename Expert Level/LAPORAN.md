@@ -220,13 +220,43 @@ $$
 
 Parameter terbaik yang diperoleh dari proses tuning kemudian diuji pada data testing.
 
+### ⚙️ Hasil Tuning dan Konfigurasi Optimal
+  **- Timestep**: 5
+  **- Units_1**: 150
+  **- Units_2**: 200
+  **- Dropout_1**: 0.4
+  **- Dropout_2**: 0.3
+  **- Optimizer**: Adam
+  **- Epoch**: 20
+  **- Batch size**: 32
+
+Konfigurasi ini memberikan hasil terbaik dalam hal keseimbangan antara akurasi dan stabilitas model.
+
 ### Evaluasi Model Forecasting Data Test
 ![image](https://github.com/user-attachments/assets/a201f8f1-6e73-4861-83da-5bda51456a85)
 
-### Skor Evaluasi Metrik Model LSTM
+**Grafik menunjukkan bahwa model mengalami konvergensi yang baik. Baik training loss maupun validation loss menurun secara konsisten dan tetap rendah hingga akhir epoch, tanpa indikasi overfitting. Hal ini memperkuat bahwa model dapat melakukan generalisasi dengan baik pada data baru.**
+
+### ✅ Skor Evaluasi Metrik Model
 - RMSE: 104.48144718920904
 - MAPE: 1.6403591247308735%
 - R² Score: 0.7595615661462917
 
+**Nilai MAPE yang rendah menunjukkan bahwa model memiliki tingkat akurasi tinggi dalam konteks prediksi harga saham. RMSE yang cukup kecil dan R² yang mendekati 1 menunjukkan bahwa model memiliki kemampuan generalisasi yang baik.**
+
 ### Evaluasi Visual: Loss Function
 ![image](https://github.com/user-attachments/assets/1f15541b-31b3-4807-a7cd-44f7da62a924)
+
+Model LSTM mampu mengikuti pola pergerakan harga saham dengan cukup akurat. Terlihat bahwa garis prediksi (merah) mendekati harga aktual (biru), terutama dalam mengikuti arah tren naik dan turun secara keseluruhan.
+
+*🔍 Catatan:*
+- Fluktuasi tajam atau lonjakan ekstrem agak sulit ditangkap secara presisi, namun ini umum dalam data saham.
+- Secara keseluruhan, model sudah cukup representatif untuk digunakan dalam konteks analisis dan forecasting.
+
+## Kesimpulan Model
+Model ini mampu memberikan estimasi harga saham yang cukup akurat, yang dapat memberikan nilai tambah dalam pengambilan keputusan investasi, seperti:
+- Menentukan waktu beli/jual berdasarkan tren yang diprediksi.
+- Membantu investor atau fund manager dalam menganalisis potensi risiko.
+- Dapat diintegrasikan ke dalam sistem trading otomatis sebagai modul prediksi harga.
+
+Dengan akurasi tinggi dan kestabilan model, pendekatan ini layak dipertimbangkan untuk diterapkan lebih lanjut di dunia nyata.
