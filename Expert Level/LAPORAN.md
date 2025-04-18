@@ -252,7 +252,7 @@ Model LSTM mampu mengikuti pola pergerakan harga saham dengan cukup baik. Garis 
 ## Kesimpulan Model
 Model LSTM yang telah dibangun dan dituning mampu memberikan estimasi harga saham BBRI yang cukup akurat berdasarkan data historis. Melalui proses evaluasi kuantitatif (RMSE, MAPE, dan R² Score) dan visualisasi hasil prediksi, model menunjukkan kemampuan dalam mengenali pola pergerakan harga dan mengidentifikasi arah tren di masa depan.
 
-Prediksi yang dihasilkan dari model ini dapat memberikan insight bagi investor, terutama dalam memahami kecenderungan naik atau turunnya harga saham. Informasi ini dapat dimanfaatkan untuk mendukung pengambilan keputusan investasi yang lebih rasional, seperti kapan waktu yang tepat untuk mempertimbangkan aksi beli atau jual saham.
+Prediksi yang dihasilkan dari model ini dapat memberikan insight bagi investor, terutama dalam **memahami kecenderungan naik atau turunnya harga saham**. Informasi ini dapat dimanfaatkan untuk mendukung pengambilan keputusan investasi yang lebih rasional, seperti kapan waktu yang tepat untuk mempertimbangkan aksi beli atau jual saham.
 
 Model ini **tidak bertujuan untuk menentukan harga spesifik sebagai acuan jual atau beli**, namun lebih sebagai **alat bantu analitik dalam melihat tren pasar secara umum.**
 
