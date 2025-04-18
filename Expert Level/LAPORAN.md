@@ -21,11 +21,11 @@ Pergerakan harga saham merupakan data time series yang sangat dipengaruhi oleh p
 
 ### Problem Statements
 - Bagaimana cara memprediksi harga saham BBRI berdasarkan data historis?
-- Bagaimana cara menentukan harga saham BBRI yang tepat untuk pembelian atau penjualan berdasarkan prediksi harga saham di masa depan?
+- Bagaimana cara memberikan insight arah tren pergerakan harga saham BBRI untuk mendukung keputusan investasi seperti pembelian atau penjualan saham?
 
 ### Goals
 - Menghasilkan prediksi harga saham BBRI menggunakan data historis sebagai dasar pengambilan keputusan investasi.
-- Memberikan insight waktu yang tepat untuk membeli atau menjual saham BBRI berdasarkan hasil prediksi harga di masa depan.
+- Memberikan insight mengenai tren harga saham BBRI di masa depan yang dapat membantu investor dalam mempertimbangkan waktu yang tepat untuk membeli atau menjual saham.
 
 ### Solution statements
 1. Membangun Model LSTM
