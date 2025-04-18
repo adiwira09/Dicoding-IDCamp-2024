@@ -231,16 +231,16 @@ Konfigurasi ini memberikan hasil terbaik dalam hal keseimbangan antara akurasi d
 ### Evaluasi Model Forecasting Data Test
 ![image](https://github.com/user-attachments/assets/a201f8f1-6e73-4861-83da-5bda51456a85)
 
-Model LSTM mampu mengikuti pola pergerakan harga saham dengan cukup akurat. Terlihat bahwa garis prediksi (merah) mendekati harga aktual (biru), terutama dalam mengikuti arah tren naik dan turun secara keseluruhan.
+Model LSTM mampu mengikuti pola pergerakan harga saham dengan cukup baik. Garis prediksi (merah) secara umum mengikuti pergerakan harga aktual (biru), terutama dalam mencerminkan arah tren naik dan turun. Hal ini memperlihatkan bahwa model dapat memberikan gambaran umum mengenai kecenderungan pergerakan harga saham di masa depan, yang berguna sebagai bahan pertimbangan dalam pengambilan keputusan investasi.
 
 *🔍 Catatan:*
 - Fluktuasi tajam atau lonjakan ekstrem agak sulit ditangkap secara presisi, namun ini umum dalam data saham.
 - Secara keseluruhan, model sudah cukup representatif untuk digunakan dalam konteks analisis dan forecasting.
 
 ### ✅ Skor Evaluasi Metrik Model
-- RMSE: 104.48144718920904
-- MAPE: 1.6403591247308735%
-- R² Score: 0.7595615661462917
+- RMSE: 102.58155180242858
+- MAPE: 1.5988376073752097%
+- R² Score: 0.7682263497209625
 
 **Nilai MAPE yang rendah menunjukkan bahwa model memiliki tingkat akurasi tinggi dalam konteks prediksi harga saham. RMSE yang cukup kecil dan R² yang mendekati 1 menunjukkan bahwa model memiliki kemampuan generalisasi yang baik.**
 
@@ -250,9 +250,10 @@ Model LSTM mampu mengikuti pola pergerakan harga saham dengan cukup akurat. Terl
 **Grafik menunjukkan bahwa model mengalami konvergensi yang baik. Baik training loss maupun validation loss menurun secara konsisten dan tetap rendah hingga akhir epoch, tanpa indikasi overfitting. Hal ini memperkuat bahwa model dapat melakukan generalisasi dengan baik pada data baru.**
 
 ## Kesimpulan Model
-Model ini mampu memberikan estimasi harga saham yang cukup akurat, yang dapat memberikan nilai tambah dalam pengambilan keputusan investasi, seperti:
-- Menentukan waktu beli/jual berdasarkan tren yang diprediksi.
-- Membantu investor atau fund manager dalam menganalisis potensi risiko.
-- Dapat diintegrasikan ke dalam sistem trading otomatis sebagai modul prediksi harga.
+Model LSTM yang telah dibangun dan dituning mampu memberikan estimasi harga saham BBRI yang cukup akurat berdasarkan data historis. Melalui proses evaluasi kuantitatif (RMSE, MAPE, dan R² Score) dan visualisasi hasil prediksi, model menunjukkan kemampuan dalam mengenali pola pergerakan harga dan mengidentifikasi arah tren di masa depan.
 
-Dengan akurasi tinggi dan kestabilan model, pendekatan ini layak dipertimbangkan untuk diterapkan lebih lanjut di dunia nyata.
+Prediksi yang dihasilkan dari model ini dapat memberikan insight bagi investor, terutama dalam memahami kecenderungan naik atau turunnya harga saham. Informasi ini dapat dimanfaatkan untuk mendukung pengambilan keputusan investasi yang lebih rasional, seperti kapan waktu yang tepat untuk mempertimbangkan aksi beli atau jual saham.
+
+Model ini **tidak bertujuan untuk menentukan harga spesifik sebagai acuan jual atau beli**, namun lebih sebagai **alat bantu analitik dalam melihat tren pasar secara umum.**
+
+Dengan akurasi dan stabilitas yang dimiliki, model LSTM ini memiliki potensi untuk diintegrasikan dalam sistem pendukung keputusan investasi, ataupun sebagai bagian dari dashboard analitik bagi analis keuangan dan investor.
