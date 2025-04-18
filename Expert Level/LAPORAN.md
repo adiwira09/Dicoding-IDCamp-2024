@@ -231,7 +231,11 @@ Konfigurasi ini memberikan hasil terbaik dalam hal keseimbangan antara akurasi d
 ### Evaluasi Model Forecasting Data Test
 ![image](https://github.com/user-attachments/assets/a201f8f1-6e73-4861-83da-5bda51456a85)
 
-**Grafik menunjukkan bahwa model mengalami konvergensi yang baik. Baik training loss maupun validation loss menurun secara konsisten dan tetap rendah hingga akhir epoch, tanpa indikasi overfitting. Hal ini memperkuat bahwa model dapat melakukan generalisasi dengan baik pada data baru.**
+Model LSTM mampu mengikuti pola pergerakan harga saham dengan cukup akurat. Terlihat bahwa garis prediksi (merah) mendekati harga aktual (biru), terutama dalam mengikuti arah tren naik dan turun secara keseluruhan.
+
+*🔍 Catatan:*
+- Fluktuasi tajam atau lonjakan ekstrem agak sulit ditangkap secara presisi, namun ini umum dalam data saham.
+- Secara keseluruhan, model sudah cukup representatif untuk digunakan dalam konteks analisis dan forecasting.
 
 ### ✅ Skor Evaluasi Metrik Model
 - RMSE: 104.48144718920904
@@ -243,11 +247,7 @@ Konfigurasi ini memberikan hasil terbaik dalam hal keseimbangan antara akurasi d
 ### Evaluasi Visual: Loss Function
 ![image](https://github.com/user-attachments/assets/1f15541b-31b3-4807-a7cd-44f7da62a924)
 
-Model LSTM mampu mengikuti pola pergerakan harga saham dengan cukup akurat. Terlihat bahwa garis prediksi (merah) mendekati harga aktual (biru), terutama dalam mengikuti arah tren naik dan turun secara keseluruhan.
-
-*🔍 Catatan:*
-- Fluktuasi tajam atau lonjakan ekstrem agak sulit ditangkap secara presisi, namun ini umum dalam data saham.
-- Secara keseluruhan, model sudah cukup representatif untuk digunakan dalam konteks analisis dan forecasting.
+**Grafik menunjukkan bahwa model mengalami konvergensi yang baik. Baik training loss maupun validation loss menurun secara konsisten dan tetap rendah hingga akhir epoch, tanpa indikasi overfitting. Hal ini memperkuat bahwa model dapat melakukan generalisasi dengan baik pada data baru.**
 
 ## Kesimpulan Model
 Model ini mampu memberikan estimasi harga saham yang cukup akurat, yang dapat memberikan nilai tambah dalam pengambilan keputusan investasi, seperti:
