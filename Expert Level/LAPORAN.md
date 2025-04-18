@@ -20,14 +20,12 @@ Pasar saham merupakan salah satu instrumen investasi dengan volatilitas yang tin
 Pergerakan harga saham merupakan data time series yang sangat dipengaruhi oleh pola masa lalu. Untuk itu, diperlukan model yang mampu mengenali ketergantungan jangka panjang dari data historis. Salah satu algoritma yang efektif untuk tugas ini adalah Long Short-Term Memory (LSTM), yaitu jenis Recurrent Neural Network (RNN) yang dirancang khusus untuk mengatasi kelemahan RNN biasa dalam mengingat informasi jangka panjang.
 
 ### Problem Statements
-- Bagaimana membangun model LSTM yang optimal untuk memprediksi harga saham BBRI berdasarkan data historis?
-- Bagaimana konfigurasi parameter yang optimal dalam membangun model LSTM untuk forecasting harga saham BBRI berdasarkan data historis?
+- Bagaimana cara memprediksi harga saham BBRI berdasarkan data historis?
+- Bagaimana cara menentukan harga saham BBRI yang tepat untuk pembelian atau penjualan berdasarkan prediksi harga saham di masa depan?
 
 ### Goals
-- Membangun model prediksi harga saham BBRI menggunakan algoritma LSTM.
-- Melakukan pencarian nilai optimal dari beberapa hyperparameter utama melalui proses tuning.
-- Mengukur kinerja model menggunakan metrik evaluasi seperti Root Mean Squared Error (RMSE), Mean Absolute Error (MAE), dan R² Score.
-- Menganalisis hasil prediksi baik secara kuantitatif (nilai error) maupun kualitatif (visualisasi grafik prediksi vs data aktual).
+- Menghasilkan prediksi harga saham BBRI menggunakan data historis sebagai dasar pengambilan keputusan investasi.
+- Memberikan insight waktu yang tepat untuk membeli atau menjual saham BBRI berdasarkan hasil prediksi harga di masa depan.
 
 ### Solution statements
 1. Membangun Model LSTM
@@ -42,7 +40,7 @@ Pergerakan harga saham merupakan data time series yang sangat dipengaruhi oleh p
      - Jumlah nilai dropout
    - Proses tuning dilakukan secara iteratif atau dengan teknik pencarian seperti Random Search.
 
-4. Evaluasi dan Visualisasi
+3. Evaluasi dan Visualisasi
    - Menggunakan RMSE, MAE, dan R² Score sebagai metrik evaluasi model.
    - Membandingkan grafik hasil prediksi dengan data aktual untuk menilai kualitas prediksi secara visual.
 
