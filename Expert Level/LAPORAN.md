@@ -49,8 +49,6 @@ Pergerakan harga saham merupakan data time series yang sangat dipengaruhi oleh p
 ## Data Understanding
 Dataset yang digunakan merupakan data historis dari saham BBRI selama 3 tahun (1 Januari 2022 - 31 Desember 2024). Baris data yang berhasil didapatkan sebanyak 728 baris dan 6 kolom. 
 
-![image](https://github.com/user-attachments/assets/b3c9ef66-663b-4e5d-a3c3-bfcc9a0d302d)
-
 Pengambilan data dilakukan dengan cara scraping pada platform [Yahoo Finance](https://finance.yahoo.com/quote/BBRI.JK/).
 
 ### Variabel yang digunakan pada forecasting harga saham BBRI adalah:
@@ -86,7 +84,7 @@ Tipe data pada semua kolom masih berupa object/string.
 
 ### Data duplikat
 
-![image](https://github.com/user-attachments/assets/717d6297-9f19-4824-8b50-f23d02fb21a8)
+![image](https://github.com/user-attachments/assets/fe929bfc-42ab-4433-84f6-9978631690eb)
 
 Dataset tidak memiliki data yang duplikat.
 
