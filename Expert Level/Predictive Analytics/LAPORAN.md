@@ -122,6 +122,7 @@ Dilakukan convert tipe data dari yang semua nya object/string ke tipe data yang 
 - Date -> **datetime**
 - Open -> **float**
 - High -> **float**
+- Low -> **float**
 - Close -> **float**
 - Volume -> **float**
 
