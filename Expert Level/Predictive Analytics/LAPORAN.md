@@ -229,7 +229,7 @@ Parameter terbaik yang diperoleh dari proses tuning kemudian diuji pada data tes
 Konfigurasi ini memberikan hasil terbaik dalam hal keseimbangan antara akurasi dan stabilitas model.
 
 ### Evaluasi Model Forecasting Data Test
-![image](https://github.com/user-attachments/assets/a201f8f1-6e73-4861-83da-5bda51456a85)
+![image](https://github.com/user-attachments/assets/36f354c7-181b-4ea7-a9e7-92d8cee4987b)
 
 Model LSTM mampu mengikuti pola pergerakan harga saham dengan cukup baik. Garis prediksi (merah) secara umum mengikuti pergerakan harga aktual (biru), terutama dalam mencerminkan arah tren naik dan turun. Hal ini memperlihatkan bahwa model dapat memberikan gambaran umum mengenai kecenderungan pergerakan harga saham di masa depan, yang berguna sebagai bahan pertimbangan dalam pengambilan keputusan investasi.
 
@@ -245,7 +245,7 @@ Model LSTM mampu mengikuti pola pergerakan harga saham dengan cukup baik. Garis 
 **Nilai MAPE yang rendah menunjukkan bahwa model memiliki tingkat akurasi tinggi dalam konteks prediksi harga saham. RMSE yang cukup kecil dan R² yang mendekati 1 menunjukkan bahwa model memiliki kemampuan generalisasi yang baik.**
 
 ### Evaluasi Visual: Loss Function
-![image](https://github.com/user-attachments/assets/1f15541b-31b3-4807-a7cd-44f7da62a924)
+![image](https://github.com/user-attachments/assets/cd800f8f-44ee-411f-8b8d-24049b965e44)
 
 **Grafik menunjukkan bahwa model mengalami konvergensi yang baik. Baik training loss maupun validation loss menurun secara konsisten dan tetap rendah hingga akhir epoch, tanpa indikasi overfitting. Hal ini memperkuat bahwa model dapat melakukan generalisasi dengan baik pada data baru.**
 
