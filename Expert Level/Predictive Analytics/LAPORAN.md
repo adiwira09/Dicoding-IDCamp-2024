@@ -188,6 +188,7 @@ Setelah proses tuning selesai, model terbaik dibangun kembali dengan konfigurasi
   - Loss function: Mean Squared Error (MSE)
   - Epoch: 20
   - Batch size: 32
+
 Model ini kemudian dilatih kembali pada data pelatihan dan divalidasi menggunakan data testing. Proses pelatihan menggunakan 20 epoch dan menunjukkan stabilitas serta penurunan loss yang signifikan pada data validasi
 
 ## Evaluation
