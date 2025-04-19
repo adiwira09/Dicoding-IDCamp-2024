@@ -114,8 +114,6 @@ Ada beberapa bulan dengan harga yang lebih tinggi, dan ada beberapa bulan yang h
 Grafik menunjukkan fluktuasi harian yang cukup besar, dengan banyak lonjakan tajam baik ke atas maupun ke bawah. Beberapa puncak tajam menunjukkan periode dengan perubahan harga yang sangat besar dalam waktu singkat. Ini mengindikasikan bahwa harga saham BBRI mengalami volatilitas yang cukup tinggi di banyak titik waktu.
 
 ## Data Preparation
-Setelah dilakukan data understanding, ada beberapa hal yang perlu dilakukan sebelum membangun model forecasting. Diantaranya :
-
 1. **Mengubah Tipe Data**
 
 ![image](https://github.com/user-attachments/assets/da8989f2-d572-4554-9873-7f01a9b2cf56)
@@ -145,7 +143,7 @@ Arsitekur LSTM sangat sensitif terhadap skala data. Oleh karena itu, dilakukan n
 
 Dalam konteks time series forecasting, digunakan pendekatan sliding window dengan time step sebanyak 5, yang berarti model akan menggunakan lima data sebelumnya untuk memprediksi harga pada waktu berikutnya. Pemilihan time step ini merupakan salah satu hyperparameter penting dalam modeling time series.
 
-6. **Spit Dataset**
+6. **Split Dataset**
 
 Data kemudian dibagi menjadi dua bagian, yaitu training set (80%) dan testing set (20%). Dataset yang telah terbentuk kemudian di-reshape menjadi format tiga dimensi [samples, time steps, features], yaitu format yang dibutuhkan oleh model LSTM dalam proses pelatihan.
 
