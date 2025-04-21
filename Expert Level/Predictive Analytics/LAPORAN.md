@@ -114,37 +114,15 @@ Ada beberapa bulan dengan harga yang lebih tinggi, dan ada beberapa bulan yang h
 Grafik menunjukkan fluktuasi harian yang cukup besar, dengan banyak lonjakan tajam baik ke atas maupun ke bawah. Beberapa puncak tajam menunjukkan periode dengan perubahan harga yang sangat besar dalam waktu singkat. Ini mengindikasikan bahwa harga saham BBRI mengalami volatilitas yang cukup tinggi di banyak titik waktu.
 
 ## Data Preparation
-1. **Mengubah Tipe Data**
-
-![image](https://github.com/user-attachments/assets/da8989f2-d572-4554-9873-7f01a9b2cf56)
-
-Dilakukan convert tipe data dari yang semua nya object/string ke tipe data yang sesuai
-- Date -> **datetime**
-- Open -> **float**
-- High -> **float**
-- Low -> **float**
-- Close -> **float**
-- Volume -> **float**
-
-2. **Drop/delete NaN value**
-
-Dikarenakan NaN value disebabkan oleh pengisian besaran dividen yang diberikan perusahaan oleh investor, baris tersebut dilakukan drop/delete.
-
-![image](https://github.com/user-attachments/assets/c54f76cc-c64a-4748-9083-8b6d72fe7ed3)
-
-3. **Date sebagai Index**
-
-Untuk mempermudah pemrosesan data time series, kolom tanggal (Date) dijadikan sebagai index. Hal ini dilakukan agar setiap data harga saham dapat diakses dan dianalisis berdasarkan waktu secara kronologis.
-
-4. **Normalisasi Data**
+1. **Normalisasi Data**
 
 Arsitekur LSTM sangat sensitif terhadap skala data. Oleh karena itu, dilakukan normalisasi menggunakan MinMaxScaler untuk mengubah skala nilai ke dalam rentang [0, 1]. Tujuannya adalah agar proses pembelajaran pada model LSTM menjadi lebih stabil dan cepat konvergen.
 
-5. **Penentuan Time Step**
+2. **Penentuan Time Step**
 
 Dalam konteks time series forecasting, digunakan pendekatan sliding window dengan time step sebanyak 5, yang berarti model akan menggunakan lima data sebelumnya untuk memprediksi harga pada waktu berikutnya. Pemilihan time step ini merupakan salah satu hyperparameter penting dalam modeling time series.
 
-6. **Split Dataset**
+3. **Split Dataset**
 
 Data kemudian dibagi menjadi dua bagian, yaitu training set (80%) dan testing set (20%). Dataset yang telah terbentuk kemudian di-reshape menjadi format tiga dimensi [samples, time steps, features], yaitu format yang dibutuhkan oleh model LSTM dalam proses pelatihan.
 
