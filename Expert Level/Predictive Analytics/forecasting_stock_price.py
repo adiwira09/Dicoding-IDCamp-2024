@@ -246,18 +246,12 @@ print(f"Volatilitas harian (standar deviasi): {volatilitas}")
 scaler = MinMaxScaler(feature_range=(0, 1))
 scaled_data = scaler.fit_transform(df_clean[['Close']])
 
-"""## Time-step & Split dataset"""
+"""## Time-step"""
 
 # Menentukan jumlah time steps (lag)
 time_step = 5
 
-# Membagi data menjadi training dan testing set
-train_size = int(len(df_clean) * 0.8)
-train_data = scaled_data[:train_size]
-test_data = scaled_data[train_size:]
-
-# Menentukan jumlah time steps (lag)
-time_step = 90
+"""## Split dataset"""
 
 # Membagi data menjadi training dan testing set
 train_size = int(len(df_clean) * 0.8)
