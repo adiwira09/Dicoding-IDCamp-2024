@@ -69,45 +69,45 @@ File .csv yang digunakan untuk pembuatan sistem rekomendasi ini hanya **tourism_
 | 1 | 101 | Kampung Wisata Sosro Menduran | Kampung wisata Sosromenduran merupakan kampung... | Budaya | Yogyakarta | 0 | 4.0 |
 
 ### Dataset information
-![image](https://github.com/user-attachments/assets/9bdda659-ea62-4b5e-8ca4-55c077fa2af3)
+![image](https://github.com/user-attachments/assets/9a399bbc-d2a2-40a2-952f-a39a436feafb)
 
 Dataset memiliki 10000 baris dan 8 kolom. Untuk tipe data pada dataset sudah sesuai.
 
 ### NaN Value
-![image](https://github.com/user-attachments/assets/18a9622b-2a67-4ac5-adf7-fc979cc4b7ff)
+![image](https://github.com/user-attachments/assets/9a399bbc-d2a2-40a2-952f-a39a436feafb)
 
 Tidak ada baris yang memiliki NaN value
 
 ### Data Duplikat
-![image](https://github.com/user-attachments/assets/e41fd893-b770-407a-9f1e-51e41e993918)
+![image](https://github.com/user-attachments/assets/2b16ddab-146a-471e-8203-161f5c41b000)
 
 Terdapat 403 data duplikat, yang merupakan 4.03% dari keseluruhan data.
 
 ### Top 10 Places by Average Rating
-![image](https://github.com/user-attachments/assets/35c55633-9931-4a4e-a4b0-ed496d30a94f)
+![image](https://github.com/user-attachments/assets/6bd76626-2665-466c-ad29-110c07279672)
 
 Wisata Kuliner Pecenongan menduduki peringkat pertama dengan rating tertinggi, diikuti oleh Desa Wisata Sungai Code Jogja Kota dan Freedom Library.
 
 ### Scatter Plot: Price vs Rating
-![image](https://github.com/user-attachments/assets/f78b7eb8-3a0b-4c2c-ba3d-51c570269a2d)
+![image](https://github.com/user-attachments/assets/f3a228e3-0c5f-482b-8009-17b36d55def3)
 
 Dari scatter plot, terlihat bahwa meskipun harga bervariasi, sebagian besar destinasi memiliki rating tinggi (di atas 4), namun tidak ada pola yang jelas antara harga dan rating.
 
-![image](https://github.com/user-attachments/assets/c1c7780d-5518-4e13-befb-0e04be580b0b)
+![image](https://github.com/user-attachments/assets/d5eeeece-2433-486f-a330-7f70aaea2e8f)
 
 Dalam analisis regresi, hasil menunjukkan bahwa koefisien untuk harga sangat kecil (7.296e-08), dan p-value sebesar 0.628 menunjukkan bahwa harga tidak berpengaruh signifikan terhadap rating destinasi wisata. Nilai R-squared yang sangat rendah (0.001) juga menegaskan bahwa harga hanya menjelaskan sedikit sekali variasi dalam rating.
 
 **Harga tidak menjadi faktor yang signifikan dalam menentukan rating destinasi wisata.**
 
 ### Barplot Distribusi Rating
-![image](https://github.com/user-attachments/assets/45fbd0db-ae63-4f82-a550-5df748d98a4d)
+![image](https://github.com/user-attachments/assets/200577e3-8c0d-4fbc-9c56-f1b93f43f73e)
 
 Sebagian besar rating yang diterima adalah rating 4, dengan jumlah yang sangat dominan hampir mencapai 7.000. Sementara itu, rating 5 juga mendapatkan jumlah yang cukup besar, meskipun jauh lebih sedikit dibandingkan rating 4. Di sisi lain, rating 3 hampir tidak terlihat di grafik, menandakan bahwa sedikit sekali tempat yang menerima penilaian di sekitar nilai ini.
 
 ## Data Preparation
 Ada beberapa tahapan untuk data preparation sebelum memulai untuk membuat sistem rekomendasi. Sebelum dilakukannya data preparation, dataset memiliki **jumlah baris 10000** dan **jumlah kolom 8**.
 
-![image](https://github.com/user-attachments/assets/f0418b99-4ffc-4db5-bc6a-9ad103c77e6c)
+![image](https://github.com/user-attachments/assets/0cbf8607-fefe-447b-ad16-e9678abffc26)
 
 ### 1. Menghapus kolom yang tidak relevan
 
@@ -116,8 +116,6 @@ Kolom yang dihapus adalah Price. Berdasarkan data understanding pada bagian **Sc
 ### 2. Drop/delete duplikat value
 
 Terdapat 403 baris duplikat, yang merepresentasikan sekitar 4.03% dari keseluruhan data. Karena baris-baris ini sepenuhnya identik, maka dihapus untuk menghindari bias pada hasil pemodelan.
-
-![image](https://github.com/user-attachments/assets/c54f76cc-c64a-4748-9083-8b6d72fe7ed3)
 
 ### 3. Processing text
 
@@ -129,7 +127,7 @@ Processing text dilakukan pada kolom **Description**, **City**, dan **Category**
 
 Tujuan dari preprocessing ini adalah untuk menyederhanakan teks dan meningkatkan kualitas perhitungan kemiripan antar destinasi wisata.
 
-![image](https://github.com/user-attachments/assets/b05da0f6-b20b-4c11-8619-ec35ac45896e)
+![image](https://github.com/user-attachments/assets/8a76112a-bb9b-4a90-b0ce-7b7e790f54be)
 
 Setelah dilakukan beberapa tahapan preparation, jumlah baris dan kolom pada dataset berjumlah **9597 baris** dan **7 kolom**
 
