@@ -42,6 +42,8 @@ Sistem ini menggunakan rating pengguna lain yang memiliki preferensi serupa untu
     - **Fokus**: Pola laten dari interaksi antara pengguna dan destinasi
 
 ## Data Understanding
+Dataset didapatkan dari platform kaggle. Link dataset : **https://www.kaggle.com/datasets/aprabowo/indonesia-tourism-destination**
+
 Terdapat 4 dataset .csv yang tersedia yaitu
 - tourism_ with _id.csv : berisi informasi tentang objek wisata di 5 kota besar di Indonesia dengan total sekitar 400 tempat wisata.
 - user.csv : berisi data pengguna dummy untuk membuat fitur rekomendasi berdasarkan pengguna.
@@ -71,17 +73,17 @@ File .csv yang digunakan untuk pembuatan sistem rekomendasi ini hanya **tourism_
 ### Dataset information
 ![image](https://github.com/user-attachments/assets/9a399bbc-d2a2-40a2-952f-a39a436feafb)
 
-Dataset memiliki 10000 baris dan 8 kolom. Untuk tipe data pada dataset sudah sesuai.
+Dataset memiliki **10000 baris** dan **8 kolom**. Untuk tipe data pada dataset sudah sesuai.
 
 ### NaN Value
 ![image](https://github.com/user-attachments/assets/9a399bbc-d2a2-40a2-952f-a39a436feafb)
 
-Tidak ada baris yang memiliki NaN value
+**Tidak ada baris yang memiliki NaN value.**
 
 ### Data Duplikat
 ![image](https://github.com/user-attachments/assets/2b16ddab-146a-471e-8203-161f5c41b000)
 
-Terdapat 403 data duplikat, yang merupakan 4.03% dari keseluruhan data.
+Terdapat **403 data duplikat**, yang merupakan **4.03%** dari keseluruhan data.
 
 ### Top 10 Places by Average Rating
 ![image](https://github.com/user-attachments/assets/6bd76626-2665-466c-ad29-110c07279672)
