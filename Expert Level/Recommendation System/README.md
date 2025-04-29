@@ -100,28 +100,28 @@ Dataset **tourism_ with _id.csv** memiliki **437 baris** dan **7 kolom**. Untuk 
 
 Dataset **tourism_rating.csv** memiliki **10000 baris** dan **3 kolom**. Untuk tipe data pada dataset sudah sesuai.
 
-### NaN Value
-![image](https://github.com/user-attachments/assets/871282d7-dece-4412-946f-da4456699170) | ![image](https://github.com/user-attachments/assets/7a040c01-bf5c-46ac-b5cc-2efbba5cc9c4)
+### 3. NaN Value
+ ![image](https://github.com/user-attachments/assets/7a040c01-bf5c-46ac-b5cc-2efbba5cc9c4) | ![image](https://github.com/user-attachments/assets/871282d7-dece-4412-946f-da4456699170)
 |:--:|:--:|
 
-- Gambar kiri merupakan data **tourism_rating.csv** -> Tidak ada data null.
 - Gambar kanan merupakan data **tourism_ with _id.csv** -> Terdapat NaN value pada kolom **Time_Minutes** dan **Unnamed: 11**
+- Gambar kiri merupakan data **tourism_rating.csv** -> Tidak ada data null.
 
-### Data Duplikat
+### 4. Data Duplikat
 
-![image](https://github.com/user-attachments/assets/ee610911-dfa7-4b1f-a523-40e681cd604a) | ![image](https://github.com/user-attachments/assets/ff494c9d-5fb2-4d37-8ef7-9334e04fc341)
+![image](https://github.com/user-attachments/assets/ff494c9d-5fb2-4d37-8ef7-9334e04fc341) | ![image](https://github.com/user-attachments/assets/ee610911-dfa7-4b1f-a523-40e681cd604a)
 |:--:|:--:|
 
 - Pada data **tourism_with_id.csv** tidak terdapat data duplikat.
 - Pada data **tourism_rating.csv** terdapat **79 data duplikat** yang benar-benar sama.
 
-### Top 10 Places by Average Rating
-![image](https://github.com/user-attachments/assets/6bd76626-2665-466c-ad29-110c07279672)
+### 5. Top 10 Places by Average Rating
+![image](https://github.com/user-attachments/assets/6c97f0fd-c30d-4459-b11d-211523187754)
 
-Wisata Kuliner Pecenongan menduduki peringkat pertama dengan rating tertinggi, diikuti oleh Desa Wisata Sungai Code Jogja Kota dan Freedom Library.
+Freedom Library menduduki peringkat pertama dengan rating tertinggi, diikuti oleh Desa Wisata Sungai Code Jogja Kota dan Kauman Pakualaman Yogyakarta.
 
-### Scatter Plot: Price vs Rating
-![image](https://github.com/user-attachments/assets/f3a228e3-0c5f-482b-8009-17b36d55def3)
+### 6. Scatter Plot: Price vs Rating
+![image](https://github.com/user-attachments/assets/776f72d7-af5b-4844-9018-b485ce74d82e)
 
 Dari scatter plot, terlihat bahwa meskipun harga bervariasi, sebagian besar destinasi memiliki rating tinggi (di atas 4), namun tidak ada pola yang jelas antara harga dan rating.
 
@@ -131,10 +131,10 @@ Dalam analisis regresi, hasil menunjukkan bahwa koefisien untuk harga sangat kec
 
 **Harga tidak menjadi faktor yang signifikan dalam menentukan rating destinasi wisata.**
 
-### Barplot Distribusi Rating
-![image](https://github.com/user-attachments/assets/200577e3-8c0d-4fbc-9c56-f1b93f43f73e)
+### 7. Barplot Distribusi Rating
+![image](https://github.com/user-attachments/assets/7a907eb2-7dfc-4723-9ef6-f69701a45e79)
 
-Sebagian besar rating yang diterima adalah rating 4, dengan jumlah yang sangat dominan hampir mencapai 7.000. Sementara itu, rating 5 juga mendapatkan jumlah yang cukup besar, meskipun jauh lebih sedikit dibandingkan rating 4. Di sisi lain, rating 3 hampir tidak terlihat di grafik, menandakan bahwa sedikit sekali tempat yang menerima penilaian di sekitar nilai ini.
+Dari grafik ini, dapat dilihat bahwa distribusi pemberian rating oleh user relatif merata, di mana setiap rating (1 hingga 5) memiliki jumlah yang hampir sama, sekitar 2000, dengan sedikit perbedaan antara setiap kategori rating.
 
 ## Data Preparation
 Ada beberapa tahapan untuk data preparation sebelum memulai untuk membuat sistem rekomendasi. Sebelum dilakukannya data preparation, dataset memiliki **jumlah baris 10000** dan **jumlah kolom 8**.
