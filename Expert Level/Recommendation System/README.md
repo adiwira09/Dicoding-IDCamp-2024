@@ -52,24 +52,42 @@ Terdapat 4 dataset .csv yang tersedia yaitu
 
 File .csv yang digunakan untuk pembuatan sistem rekomendasi ini hanya **tourism_ with _id.csv** dan **tourism_rating.csv**. Kedua file tersebut dilakukan merge dataset.
 
-### Variabel pada dataset yang sudah di merge:
-- User_Id : user_id.
+### 1. Variabel pada dataset 
+#### tourism_ with _id.csv
 - Place_Id : id dari Place_Name.
 - Place_Name : nama tempat destinasi.
 - Description : teks deskripsi tentang destinasi.
 - Category : kategori dari destinasi.
 - City : lokasi kota dari destinasi.
 - Price : harga tiket masuk destinasi.
-- Rating : rating yang diberikan User_Id terhadap destinasi.
+- Rating : rata-rata rating yang diberikan destinasi.
+- Time_Minutes : 
+- Coordinate : Koordinat longitude & latitude destinasi.
+- Lat : Koordinat latitude destinasi wisata.
+- Long : Koordinat longitude destinasi wisata.
+- Unnamed: 11 : Unknown information
+- Unnamed: 12 : Unknown information
 
-| User_Id | Place_Id | Place_Name | Description | Category | City | Price | Rating |
-| ------ | ------ |------ | ------ | ------ | ------ | ------ | ------ |
-| 1 | 179 | Candi Ratu Boko | Situs Ratu Baka atau Candi Boko (Hanacaraka:ꦕꦤ... | Budaya | Yogyakarta | 75000 | 4.6 |
-| 1 | 344 | Pantai Marina | Pantai Marina (bahasa Jawa: ꦥꦱꦶꦱꦶꦂ​ꦩꦫꦶꦤ, trans... | Bahari | Semarang | 3000 | 4.1 |
-| 1 | 5   | Atlantis Water Adventure | Atlantis Water Adventure atau dikenal dengan A... | Taman Hiburan | Jakarta | 94000 | 4.5 |
-| 1 | 373 | Museum Kereta Ambarawa | Museum Kereta Api Ambarawa (bahasa Inggris: In... | Budaya | Semarang | 10000 | 4.5 |
-| 1 | 101 | Kampung Wisata Sosro Menduran | Kampung wisata Sosromenduran merupakan kampung... | Budaya | Yogyakarta | 0 | 4.0 |
+| Place_Id | Place_Name | Description | Category | City | Price | Rating | Time_Minutes	| Coordinate | Lat | Long | Unnamed: 11 | Unnamed: 12|
+| ------ |------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------|
+| 179 | Candi Ratu Boko | Situs Ratu Baka atau Candi Boko (Hanacaraka:ꦕꦤ... | Budaya | Yogyakarta | 75000 | 4.6 | 15.0 | {'lat': -6.1753924, 'lng': 106.8271528} | -6.175392 | 106.827153 | NaN | 1 |
+| 344 | Pantai Marina | Pantai Marina (bahasa Jawa: ꦥꦱꦶꦱꦶꦂ​ꦩꦫꦶꦤ, trans... | Bahari | Semarang | 3000 | 4.1 | 90.0 | {'lat': -6.137644799999999, 'lng': 106.8171245} | -6.137645 | 106.817125 | NaN | 2 |
+| 5   | Atlantis Water Adventure | Atlantis Water Adventure atau dikenal dengan A... | Taman Hiburan | Jakarta | 94000 | 4.5 | 360.0 | {'lat': -6.125312399999999, 'lng': 106.8335377} | -6.125312 | 106.833538 | NaN | 3 |
+| 373 | Museum Kereta Ambarawa | Museum Kereta Api Ambarawa (bahasa Inggris: In... | Budaya | Semarang | 10000 | 4.5 | NaN | {'lat': -6.302445899999999, 'lng': 106.8951559} | -6.302446 | 106.895156 | NaN | 4 |
+| 101 | Kampung Wisata Sosro Menduran | Kampung wisata Sosromenduran merupakan kampung... | Budaya | Yogyakarta | 0 | 4.0 | 60.0 | {'lat': -6.12419, 'lng': 106.839134} | -6.124190 | 106.839134 | NaN | 5 |
 
+#### tourism_rating.csv
+- User_Id : user_id.
+- Place_Id : id dari Place_Name.
+- Place_Ratings : rating yang diberikan User_Id terhadap destinasi.
+
+| User_Id | Place_Id | Place_Ratings |
+| ------ | ------ | ------ |
+| 1 | 179 |	3 |
+| 1 | 344 |	2 |
+| 1 | 5 | 5 |
+| 1 | 373 |	3 |
+| 1 | 101 |	4 |
 ### Dataset information
 ![image](https://github.com/user-attachments/assets/9a399bbc-d2a2-40a2-952f-a39a436feafb)
 
