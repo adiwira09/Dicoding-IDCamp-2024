@@ -61,12 +61,12 @@ File .csv yang digunakan untuk pembuatan sistem rekomendasi ini hanya **tourism_
 - City : lokasi kota dari destinasi.
 - Price : harga tiket masuk destinasi.
 - Rating : rata-rata rating yang diberikan destinasi.
-- Time_Minutes : 
-- Coordinate : Koordinat longitude & latitude destinasi.
-- Lat : Koordinat latitude destinasi wisata.
-- Long : Koordinat longitude destinasi wisata.
-- Unnamed: 11 : Unknown information
-- Unnamed: 12 : Unknown information
+- Time_Minutes : rata-rata waktu pengunjung
+- Coordinate : koordinat longitude & latitude destinasi.
+- Lat : koordinat latitude destinasi wisata.
+- Long : koordinat longitude destinasi wisata.
+- Unnamed: 11 : unknown information
+- Unnamed: 12 : unknown information
 
 | Place_Id | Place_Name | Description | Category | City | Price | Rating | Time_Minutes	| Coordinate | Lat | Long | Unnamed: 11 | Unnamed: 12|
 | ------ |------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------|
@@ -137,17 +137,21 @@ Dalam analisis regresi, hasil menunjukkan bahwa koefisien untuk harga sangat kec
 Dari grafik ini, dapat dilihat bahwa distribusi pemberian rating oleh user relatif merata, di mana setiap rating (1 hingga 5) memiliki jumlah yang hampir sama, sekitar 2000, dengan sedikit perbedaan antara setiap kategori rating.
 
 ## Data Preparation
-Ada beberapa tahapan untuk data preparation sebelum memulai untuk membuat sistem rekomendasi. Sebelum dilakukannya data preparation, dataset memiliki **jumlah baris 10000** dan **jumlah kolom 8**.
+Ada beberapa tahapan untuk data preparation sebelum memulai untuk membuat sistem rekomendasi.
 
-![image](https://github.com/user-attachments/assets/0cbf8607-fefe-447b-ad16-e9678abffc26)
+### 1. Merge dataset
+Melakukan penggabungan dataset antara **tourism_with_id.csv** dan **tourism_rating.csv**
 
-### 1. Menghapus kolom yang tidak relevan
+### 2. Menghapus kolom yang tidak relevan
+- Menghapus kolom yang tidak relevan untuk pembuatan model sistem rekomendasi, yaitu:
+  - ['Unnamed: 11','Unnamed: 12', 'Time_Minutes', 'Coordinate',	'Lat',	'Long', 'Rating', 'Price']
+- Pada Rating menggunakan kolom Place_Ratings dari dataset tourism_rating.csv karena menggambarkan interaksi user dalam memberikan rating terhadap destinasi, hal ini untuk keperluan model **Collaborative Filtering**.
 
-Kolom yang dihapus adalah Price. Berdasarkan data understanding pada bagian **Scatter Plot: Price vs Rating**, kolom Price tidak ada korelasi terhadap rating.
+### 2. NaN value
+Sebelumnya ada NaN value untuk data **tourism_with_id.csv** tetapi dikarenakan NaN berada di kolom **Time_Minutes** dan **Unnamed: 11** sedangkan 2 kolom tersebut tidak digunakan, maka handling NaN value tidak diperlukan.
 
-### 2. Drop/delete duplikat value
-
-Terdapat 403 baris duplikat, yang merepresentasikan sekitar 4.03% dari keseluruhan data. Karena baris-baris ini sepenuhnya identik, maka dihapus untuk menghindari bias pada hasil pemodelan.
+### 3. Drop/delete duplikat value
+Terdapat 79 baris duplikat, karena baris-baris ini sepenuhnya identik, maka dihapus untuk menghindari bias pada hasil pemodelan.
 
 ### 3. Processing text
 
@@ -158,10 +162,6 @@ Processing text dilakukan pada kolom **Description**, **City**, dan **Category**
 - Stemming menggunakan Sastrawi
 
 Tujuan dari preprocessing ini adalah untuk menyederhanakan teks dan meningkatkan kualitas perhitungan kemiripan antar destinasi wisata.
-
-![image](https://github.com/user-attachments/assets/8a76112a-bb9b-4a90-b0ce-7b7e790f54be)
-
-Setelah dilakukan beberapa tahapan preparation, jumlah baris dan kolom pada dataset berjumlah **9597 baris** dan **7 kolom**
 
 ### 4. Pemisahan data untuk Content Based Filtering dan Collaborative Filtering
 
