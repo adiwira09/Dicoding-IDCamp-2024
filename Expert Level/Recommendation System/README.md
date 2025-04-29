@@ -187,7 +187,7 @@ Alih-alih menghitung kemiripan antar pengguna secara langsung, pendekatan ini me
 Pembentukan user-item matrix
 ```python
 reader = Reader(rating_scale=(1, 5))
-data = Dataset.load_from_df(df_cf[['User_Id', 'Place_Name', 'Rating']], reader)
+data = Dataset.load_from_df(df_cf[['User_Id', 'Place_Name', 'Place_Ratings']], reader)
 trainset, testset = train_test_split(data, test_size=0.2)
 
 model = SVD()
@@ -285,14 +285,11 @@ Langkah-langkah utama:
 Evaluasi dilakukan untuk mengukur seberapa baik sistem rekomendasi memberikan hasil yang relevan dan akurat terhadap preferensi pengguna. Karena proyek ini menggunakan dua pendekatan — **Content-Based Filtering (CBF)** dan **Collaborative Filtering (CF)** — maka metode evaluasi juga disesuaikan dengan masing-masing pendekatan.
 
 ### Evaluasi Content-Based Filtering (CBF)
-Evaluasi sistem CBF dalam proyek ini dilakukan secara **manual** berdasarkan relevansi dari atribut konten (kategori, kota, dan deskripsi) terhadap tempat wisata yang direkomendasikan. Sistem menghitung skor total berdasarkan:
-- **Deskripsi** (60%) – menggunakan TF-IDF dan cosine similarity  
-- **Kategori** (25%) – kesamaan kategori  
-- **Kota** (15%) – kesamaan lokasi  
+Evaluasi untuk pendekatan CBF dilakukan menggunakan metrik **Precision@K**, yang mengukur proporsi destinasi yang relevan di antara top-K rekomendasi yang diberikan sistem. Dalam proyek ini, relevansi ditentukan secara manual berdasarkan kecocokan atribut kategori dan kota dari tempat wisata.
 
-Rekomendasi dievaluasi berdasarkan apakah hasil yang muncul memiliki atribut yang mirip dengan tempat wisata asal. Evaluasi dilakukan dengan:
-- **Visual inspection** terhadap hasil top-N rekomendasi
-- **Pemeriksaan kesesuaian** berdasarkan kesamaan deskripsi, kategori, dan kota
+$$
+\text{Precision@K} = \frac{\text{Jumlah item relevan dalam rekomendasi top-K}}{K}
+$$
 
 #### Studi Kasus Evaluasi
 Sebagai contoh, pengguna mencari rekomendasi berdasarkan destinasi:
@@ -315,7 +312,13 @@ Dari hasil top-10 rekomendasi, berikut beberapa pengamatan:
 | Pasar Baru | pusat belanja | bandung | 0.2566 | 1 | 0 | 0.4040 |
 | Grand Indonesia Mall | pusat belanja | jakarta | 0.0065 | 1 | 1 | 0.4039 |
 
-> Terlihat bahwa hampir seluruh hasil memiliki **kategori yang sama** (*pusat belanja*) dan berada di **lokasi yang sama** (Jakarta), dengan deskripsi yang mengandung kesamaan tematik seperti “pasar”, “belanja”, “kawasan seni”, dan “kolektor”.
+Dari hasil top-10 rekomendasi, berikut hasil evaluasi berdasarkan Precision@10:
+
+| Kriteria Evaluasi             | Jumlah Relevan | Precision@10 |
+|------------------------------|----------------|--------------|
+| **Kategori**           | 10 dari 10     | 1.0          |
+| **Kota**               | 9 dari 10      | 0.9          |
+| **Kategori & Kota**    | 9 dari 10      | 0.9          |
 
 #### Analisis Evaluasi
 - **Kekuatan CBF**: mampu menangkap relevansi konten. Hasil seperti *Pasar Tanah Abang* dan *Pasar Taman Puring* memang relevan sebagai alternatif dari *Pasar Seni*.
@@ -353,6 +356,4 @@ $$
 | **RMSE**   | 0.1073 |
 | **MAE**    | 0.0848 |
 
-> Hasil evaluasi menunjukkan bahwa model CF dengan Matrix Factorization memiliki akurasi prediksi yang baik, dengan error yang rendah.
-
-**Dengan nilai RMSE sebesar 0.1102 dan MAE 0.0867, model memiliki kemampuan prediksi yang cukup tinggi. Artinya, sistem mampu memperkirakan rating pengguna terhadap destinasi wisata dengan tingkat kesalahan yang sangat kecil.**
+> Hasil evaluasi menunjukkan bahwa model Collaborative Filtering dengan pendekatan Matrix Factorization telah berhasil membangun prediksi rating berdasarkan data interaksi pengguna.
