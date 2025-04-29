@@ -88,20 +88,32 @@ File .csv yang digunakan untuk pembuatan sistem rekomendasi ini hanya **tourism_
 | 1 | 5 | 5 |
 | 1 | 373 |	3 |
 | 1 | 101 |	4 |
-### Dataset information
-![image](https://github.com/user-attachments/assets/9a399bbc-d2a2-40a2-952f-a39a436feafb)
 
-Dataset memiliki **10000 baris** dan **8 kolom**. Untuk tipe data pada dataset sudah sesuai.
+### 2. Dataset information
+#### tourism_ with _id.csv
+![image](https://github.com/user-attachments/assets/8eda1bd0-56cb-44d2-a486-4bed00365a0f)
+
+Dataset **tourism_ with _id.csv** memiliki **437 baris** dan **7 kolom**. Untuk tipe data pada dataset sudah sesuai.
+
+#### tourism_rating.csv
+![image](https://github.com/user-attachments/assets/979a6102-019a-4652-ae86-5980bcb96d44)
+
+Dataset **tourism_rating.csv** memiliki **10000 baris** dan **3 kolom**. Untuk tipe data pada dataset sudah sesuai.
 
 ### NaN Value
-![image](https://github.com/user-attachments/assets/9a399bbc-d2a2-40a2-952f-a39a436feafb)
+![image](https://github.com/user-attachments/assets/871282d7-dece-4412-946f-da4456699170) | ![image](https://github.com/user-attachments/assets/7a040c01-bf5c-46ac-b5cc-2efbba5cc9c4)
+|:--:|:--:|
 
-**Tidak ada baris yang memiliki NaN value.**
+- Gambar kiri merupakan data **tourism_rating.csv** -> Tidak ada data null.
+- Gambar kanan merupakan data **tourism_ with _id.csv** -> Terdapat NaN value pada kolom **Time_Minutes** dan **Unnamed: 11**
 
 ### Data Duplikat
-![image](https://github.com/user-attachments/assets/2b16ddab-146a-471e-8203-161f5c41b000)
 
-Terdapat **403 data duplikat**, yang merupakan **4.03%** dari keseluruhan data.
+![image](https://github.com/user-attachments/assets/ee610911-dfa7-4b1f-a523-40e681cd604a) | ![image](https://github.com/user-attachments/assets/ff494c9d-5fb2-4d37-8ef7-9334e04fc341)
+|:--:|:--:|
+
+- Pada data **tourism_with_id.csv** tidak terdapat data duplikat.
+- Pada data **tourism_rating.csv** terdapat **79 data duplikat** yang benar-benar sama.
 
 ### Top 10 Places by Average Rating
 ![image](https://github.com/user-attachments/assets/6bd76626-2665-466c-ad29-110c07279672)
