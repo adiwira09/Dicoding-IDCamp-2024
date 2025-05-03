@@ -381,6 +381,7 @@ Sistem rekomendasi destinasi wisata yang dikembangkan dalam proyek ini menggabun
    * Precision\@10 (Kategori): 1.0
    * Precision\@10 (Kota): 0.9
    * Precision\@10 (Kategori & Kota): 0.9
+
      Hal ini menunjukkan bahwa sistem mampu memberikan hasil yang sangat relevan secara atribut — sesuai dengan tujuan untuk menghadirkan rekomendasi yang mirip secara konten.
 
 2. **CF dengan Matrix Factorization** digunakan untuk menangkap preferensi laten antar pengguna dan berhasil menjawab tantangan dalam merekomendasikan destinasi berdasarkan riwayat dan penilaian dari user/pengguna. Evaluasi prediktif menunjukkan nilai **RMSE = 1.4485** dan **MAE = 1.2247** dapat memberikan estimasi preferensi pengguna terhadap destinasi yang belum mereka eksplorasi.
