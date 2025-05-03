@@ -188,6 +188,8 @@ cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
 
 Untuk pendekatan Collaborative Filtering berbasis Matrix Factorization, digunakan atribut User_Id, Place_Name, dan Rating. Informasi deskriptif tempat tidak diperlukan karena fokus utama adalah interaksi pengguna terhadap destinasi.
 
+Dataset untuk **Collaborative Filtering** dilakukan **split dataset train dan test dengan ratio 8:2**.
+
 Alih-alih menghitung kemiripan antar pengguna secara langsung, pendekatan ini membentuk user-item matrix dan menerapkannya pada model Matrix Factorization (misalnya menggunakan algoritma SVD). Model ini akan mempelajari representasi laten dari pengguna dan destinasi untuk memprediksi rating yang hilang dan merekomendasikan tempat yang paling relevan.
 
 Pembentukan user-item matrix
