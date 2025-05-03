@@ -15,6 +15,8 @@ Pentingnya proyek ini diselesaikan tidak hanya terletak pada nilai praktisnya da
 
 **Dataset :** https://www.kaggle.com/datasets/aprabowo/indonesia-tourism-destination
 
+---
+
 ## Business Understanding
 Pengguna sering kali dihadapkan pada pilihan destinasi wisata yang sangat beragam, namun tidak selalu mudah menemukan tempat yang benar-benar sesuai dengan preferensi pribadi mereka. Sistem rekomendasi hadir sebagai solusi untuk meningkatkan pengalaman pengguna, mempercepat proses pengambilan keputusan, dan meningkatkan keterlibatan mereka terhadap platform digital pariwisata.
 
@@ -40,6 +42,8 @@ Menggunakan informasi atau atribut dari masing-masing tempat wisata, sistem akan
 Sistem ini menggunakan rating pengguna lain yang memiliki preferensi serupa untuk merekomendasikan tempat wisata. pendekatan ini menggunakan teknik Matrix Factorization (misalnya SVD atau ALS) untuk memetakan pengguna dan destinasi ke dalam ruang laten. Dengan demikian, sistem dapat memprediksi rating yang mungkin diberikan oleh pengguna terhadap destinasi yang belum mereka kunjungi, lalu memberikan rekomendasi berdasarkan prediksi tersebut.
     - **Teknik**: Matrix Factorization (contoh: Singular Value Decomposition)
     - **Fokus**: Pola laten dari interaksi antara pengguna dan destinasi
+
+---
 
 ## Data Understanding
 Dataset didapatkan dari platform kaggle. Link dataset : **https://www.kaggle.com/datasets/aprabowo/indonesia-tourism-destination**
@@ -136,6 +140,8 @@ Dalam analisis regresi, hasil menunjukkan bahwa koefisien untuk harga sangat kec
 
 Dari grafik ini, dapat dilihat bahwa distribusi pemberian rating oleh user relatif merata, di mana setiap rating (1 hingga 5) memiliki jumlah yang hampir sama, sekitar 2000, dengan sedikit perbedaan antara setiap kategori rating.
 
+---
+
 ## Data Preparation
 Ada beberapa tahapan untuk data preparation sebelum memulai untuk membuat sistem rekomendasi.
 
@@ -193,6 +199,8 @@ trainset, testset = train_test_split(data, test_size=0.2)
 model = SVD()
 model.fit(trainset)
 ```
+
+---
 
 ## Modeling
 Untuk menyelesaikan permasalahan sistem rekomendasi destinasi wisata, proyek ini menggunakan dua pendekatan utama:
@@ -281,6 +289,8 @@ Langkah-langkah utama:
     - Tetap menghadapi masalah cold-start, terutama jika ada pengguna atau tempat wisata baru tanpa interaksi sebelumnya.
     - Membutuhkan proses training dan tuning parameter yang tepat agar performa optimal, berbeda dengan pendekatan sederhana berbasis similarity.
 
+---
+
 ## Evaluasi
 Evaluasi dilakukan untuk mengukur seberapa baik sistem rekomendasi memberikan hasil yang relevan dan akurat terhadap preferensi pengguna. Karena proyek ini menggunakan dua pendekatan — **Content-Based Filtering (CBF)** dan **Collaborative Filtering (CF)** — maka metode evaluasi juga disesuaikan dengan masing-masing pendekatan.
 
@@ -357,3 +367,25 @@ $$
 | **MAE**    | 0.0848 |
 
 > Hasil evaluasi menunjukkan bahwa model Collaborative Filtering dengan pendekatan Matrix Factorization telah berhasil membangun prediksi rating berdasarkan data interaksi pengguna.
+
+---
+
+## Kesimpulan
+Sistem rekomendasi destinasi wisata yang dikembangkan dalam proyek ini menggabungkan dua pendekatan utama — **Content-Based Filtering (CBF)** dan **Collaborative Filtering (CF)** — untuk memberikan saran destinasi yang relevan dan personal kepada pengguna. Evaluasi terhadap kedua metode ini tidak hanya dilakukan dari sisi teknis, tetapi juga ditinjau ulang untuk memastikan bahwa solusi yang dibangun memberikan dampak nyata terhadap kebutuhan bisnis yang telah dirumuskan sebelumnya.
+
+### Relevansi terhadap Problem Statement dan Goals
+1. **CBF** berhasil menjawab tantangan dalam merekomendasikan destinasi berdasarkan karakteristik kontennya. Dengan menggunakan teknik TF-IDF dan cosine similarity, sistem mampu mengidentifikasi destinasi serupa berdasarkan deskripsi, kategori, dan kota. Evaluasi menggunakan **precision\@10 secara manual** menunjukkan performa yang sangat baik:
+
+   * Precision\@10 (Kategori): 1.0
+   * Precision\@10 (Kota): 0.9
+   * Precision\@10 (Kategori & Kota): 0.9
+     Hal ini menunjukkan bahwa sistem mampu memberikan hasil yang sangat relevan secara atribut — sesuai dengan tujuan untuk menghadirkan rekomendasi yang mirip secara konten.
+
+2. **CF dengan Matrix Factorization** digunakan untuk menangkap preferensi laten antar pengguna dan berhasil menjawab tantangan dalam merekomendasikan destinasi berdasarkan riwayat dan penilaian dari user/pengguna. Evaluasi prediktif menunjukkan nilai **RMSE = 1.4485** dan **MAE = 1.2247** dapat memberikan estimasi preferensi pengguna terhadap destinasi yang belum mereka eksplorasi.
+
+### Dampak Solusi terhadap Tujuan Bisnis
+* Dengan CBF, sistem dapat melayani pengguna baru (cold-start) dengan cukup efektif, karena hanya bergantung pada konten tempat wisata.
+* CF berkontribusi dalam meningkatkan keterlibatan pengguna jangka panjang karena mampu menyajikan rekomendasi yang personal dan lebih beragam, berdasarkan kesamaan preferensi dengan pengguna lain.
+* Kedua pendekatan ini secara komplementer menjawab *problem statements* yang diajukan dan mendukung pencapaian goals, yaitu membangun sistem rekomendasi yang informatif, relevan, dan mendukung proses pengambilan keputusan bagi pengguna.
+
+---
